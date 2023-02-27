@@ -17,8 +17,13 @@ public class UserLoginApplication {
 			String password = scanner.nextLine();
 
 			if (service.validateCredentials(username, password) == false) {
+				if(attempts == 4) {
+					System.out.println("Too many failed login attempts, you are now locked out.");
+					attempts++;
+				}else{
 				System.out.println("Credentials not correct.  Please try again.");
 				attempts++;
+				}
 			} else {
 				loggedIn = true;
 			}
